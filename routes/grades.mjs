@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
 // Get a single grade entry
 router.get("/:id", async (req, res) => {
   let collection = await db.collection("grades");
-  let query = { _id: ObjectId(req.params.id) };
+  let query = { _id: new ObjectId(req.params.id) };
   let result = await collection.findOne(query);
 
   if (!result) res.send("Not found").status(404);

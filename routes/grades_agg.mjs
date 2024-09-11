@@ -66,6 +66,9 @@ router.get("/learner/:id/avg-class", async (req, res) => {
         $project: {
           _id: 0,
           class_id: "$_id",
+	  quiz: { $avg: "$quiz" },
+	  exam: { $avg: "$exam" },
+	  homework: { $avg: "$homework" },
           avg: {
             $sum: [
               { $multiply: [{ $avg: "$exam" }, 0.5] },
